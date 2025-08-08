@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Carpeta donde se guardan las capturas
+
 SCREENSHOTS_DIR = os.path.join("reports", "screenshots")
 
 @pytest.fixture(scope="class")
@@ -193,7 +193,7 @@ class TestPosApp:
 
         assert "404" in self.driver.page_source
 
-# Hook para tomar screenshot siempre al terminar cada test (pase o falle)
+
 @pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -210,7 +210,7 @@ def pytest_runtest_makereport(item, call):
                 driver.save_screenshot(screenshot_path)
                 print(f"[INFO] Captura guardada: {screenshot_path}")
 
-                # Agregar imagen al reporte HTML si está activado
+                # Agregar imagen al reporte HTML 
                 pytest_html = item.config.pluginmanager.getplugin("html")
                 if pytest_html:
                     extra = getattr(rep, "extra", [])
